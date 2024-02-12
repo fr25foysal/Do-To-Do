@@ -1,4 +1,6 @@
 import { useForm } from "react-hook-form";
+import { v4 as uuidv4 } from 'uuid';
+import { addToLs } from "../../utils/localStorage";
 
 const AddTask = () => {
 
@@ -9,8 +11,10 @@ const AddTask = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit=()=>{
-    console.log("submitted");
+  const onSubmit=(data)=>{
+   const task = {...data,"id":uuidv4()}
+   console.log(task);
+   addToLs(task)
   }
 
     return (
